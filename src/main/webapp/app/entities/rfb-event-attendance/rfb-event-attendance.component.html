@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Rfb Event Attendances</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-rfb-event-attendance" [routerLink]="['/rfb-event-attendance/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Rfb Event Attendance
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="rfbEventAttendances?.length === 0">
+        <span>No rfbEventAttendances found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="rfbEventAttendances && rfbEventAttendances.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="attendanceDate"><span>Attendance Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="rfbUserId"><span>Rfb User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="rfbEventId"><span>Rfb Event</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let rfbEventAttendance of rfbEventAttendances ;trackBy: trackId">
+                    <td><a [routerLink]="['/rfb-event-attendance', rfbEventAttendance.id, 'view']">{{ rfbEventAttendance.id }}</a></td>
+                    <td>{{ rfbEventAttendance.attendanceDate | date:'mediumDate' }}</td>
+                    <td>
+                        <div *ngIf="rfbEventAttendance.rfbUserId">
+                            <a [routerLink]="['/rfb-user', rfbEventAttendance.rfbUserId , 'view']" >{{ rfbEventAttendance.rfbUserId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="rfbEventAttendance.rfbEventId">
+                            <a [routerLink]="['/rfb-event', rfbEventAttendance.rfbEventId , 'view']" >{{ rfbEventAttendance.rfbEventId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/rfb-event-attendance', rfbEventAttendance.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/rfb-event-attendance', rfbEventAttendance.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(rfbEventAttendance)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
