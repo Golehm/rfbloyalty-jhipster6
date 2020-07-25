@@ -40,7 +40,7 @@ export const rfbEventAttendanceRoute: Routes = [
     component: RfbEventAttendanceComponent,
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbEventAttendances',
+      pageTitle: 'Event Attendances',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -52,7 +52,7 @@ export const rfbEventAttendanceRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbEventAttendances',
+      pageTitle: 'Event Attendances',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -64,7 +64,7 @@ export const rfbEventAttendanceRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbEventAttendances',
+      pageTitle: 'Event Attendances',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -76,7 +76,7 @@ export const rfbEventAttendanceRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbEventAttendances',
+      pageTitle: 'Event Attendances',
     },
     canActivate: [UserRouteAccessService],
   },
