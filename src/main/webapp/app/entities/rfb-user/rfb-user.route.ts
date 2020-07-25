@@ -40,7 +40,7 @@ export const rfbUserRoute: Routes = [
     component: RfbUserComponent,
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbUsers',
+      pageTitle: 'Runners',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -52,7 +52,7 @@ export const rfbUserRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbUsers',
+      pageTitle: 'Runners',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -64,7 +64,7 @@ export const rfbUserRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbUsers',
+      pageTitle: 'Runners',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -76,7 +76,7 @@ export const rfbUserRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbUsers',
+      pageTitle: 'Runners',
     },
     canActivate: [UserRouteAccessService],
   },

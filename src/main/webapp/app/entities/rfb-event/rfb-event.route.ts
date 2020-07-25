@@ -41,7 +41,7 @@ export const rfbEventRoute: Routes = [
     data: {
       authorities: [Authority.USER],
       defaultSort: 'id,asc',
-      pageTitle: 'RfbEvents',
+      pageTitle: 'Events',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -53,7 +53,7 @@ export const rfbEventRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbEvents',
+      pageTitle: 'Events',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -65,7 +65,7 @@ export const rfbEventRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbEvents',
+      pageTitle: 'Events',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -77,7 +77,7 @@ export const rfbEventRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbEvents',
+      pageTitle: 'Events',
     },
     canActivate: [UserRouteAccessService],
   },

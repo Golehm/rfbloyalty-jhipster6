@@ -5,7 +5,7 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-rfb-user" [routerLink]="['/rfb-user/new']">
             <fa-icon icon="plus"></fa-icon>
             <span>
-            Create a new Rfb User
+            Create a new Runner
             </span>
         </button>
     </h2>
@@ -15,7 +15,7 @@
     <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="rfbUsers?.length === 0">
-        <span>No rfbUsers found</span>
+        <span>No Runners found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="rfbUsers && rfbUsers.length > 0">
