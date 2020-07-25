@@ -9,12 +9,10 @@ import { AccountService } from 'app/core/auth/account.service';
   templateUrl: './main.component.html',
 })
 export class MainComponent implements OnInit {
-  // cardStyles: string;
+  //public cardStyles: string;
+  public currentRoute: string;
   constructor(private accountService: AccountService, private titleService: Title, private router: Router) {
-    // this.cardStyles = "";
-    // if( router.url !== "/") {
-    //   this.cardStyles = "card jh-card";
-    // }
+    this.currentRoute = router.url;
   }
 
   ngOnInit(): void {

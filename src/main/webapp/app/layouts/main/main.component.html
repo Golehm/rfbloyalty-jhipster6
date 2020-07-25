@@ -5,8 +5,8 @@
 </div>
 
 <div class="container-fluid">
-    <div class="card jh-card">
-<!--    <div class="{{cardStyles}}">-->
+    <!-- I don't want the home page to have the gutter (padding & margins) that the other pages do -->
+    <div [ngClass]="{'card jh-card': currentRoute !== '/'}">
         <router-outlet></router-outlet>
     </div>
 
