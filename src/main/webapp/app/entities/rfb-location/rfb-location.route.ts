@@ -41,7 +41,7 @@ export const rfbLocationRoute: Routes = [
     data: {
       authorities: [Authority.USER],
       defaultSort: 'id,asc',
-      pageTitle: 'RfbLocations',
+      pageTitle: 'Locations',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -53,7 +53,7 @@ export const rfbLocationRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbLocations',
+      pageTitle: 'Locations',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -65,7 +65,7 @@ export const rfbLocationRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbLocations',
+      pageTitle: 'Locations',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -77,7 +77,7 @@ export const rfbLocationRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'RfbLocations',
+      pageTitle: 'Locations',
     },
     canActivate: [UserRouteAccessService],
   },
