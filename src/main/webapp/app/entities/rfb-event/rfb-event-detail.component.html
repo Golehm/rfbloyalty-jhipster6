@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="rfbEvent">
-            <h2><span>Rfb Event</span> {{ rfbEvent.id }}</h2>
+            <h2><span>Event</span> {{ rfbEvent.id }}</h2>
 
             <hr>
 
@@ -16,7 +16,7 @@
                 <dd>
                     <span>{{ rfbEvent.eventCode }}</span>
                 </dd>
-                <dt><span>Rfb Location</span></dt>
+                <dt><span>Location</span></dt>
                 <dd>
                     <div *ngIf="rfbEvent.rfbLocationId">
                         <a [routerLink]="['/rfb-location', rfbEvent.rfbLocationId, 'view']">{{ rfbEvent.rfbLocationId }}</a>
