@@ -24,14 +24,14 @@ describe('RfbEvent e2e test', () => {
     await navBarPage.goToEntity('rfb-event');
     rfbEventComponentsPage = new RfbEventComponentsPage();
     await browser.wait(ec.visibilityOf(rfbEventComponentsPage.title), 5000);
-    expect(await rfbEventComponentsPage.getTitle()).to.eq('Rfb Events');
+    expect(await rfbEventComponentsPage.getTitle()).to.eq('Events');
     await browser.wait(ec.or(ec.visibilityOf(rfbEventComponentsPage.entities), ec.visibilityOf(rfbEventComponentsPage.noResult)), 1000);
   });
 
   it('should load create RfbEvent page', async () => {
     await rfbEventComponentsPage.clickOnCreateButton();
     rfbEventUpdatePage = new RfbEventUpdatePage();
-    expect(await rfbEventUpdatePage.getPageTitle()).to.eq('Create or edit a Rfb Event');
+    expect(await rfbEventUpdatePage.getPageTitle()).to.eq('Create or edit an Event');
     await rfbEventUpdatePage.cancel();
   });
 

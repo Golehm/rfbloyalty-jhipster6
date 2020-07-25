@@ -7,7 +7,7 @@ import java.io.Serializable;
  * A DTO for the {@link com.rfb.domain.RfbEvent} entity.
  */
 public class RfbEventDTO implements Serializable {
-    
+
     private Long id;
 
     private LocalDate eventDate;
@@ -15,8 +15,16 @@ public class RfbEventDTO implements Serializable {
     private String eventCode;
 
 
-    private Long rfbLocationId;
-    
+    private RfbLocationDTO rfbLocationDTO;
+
+    public RfbLocationDTO getRfbLocationDTO() {
+        return rfbLocationDTO;
+    }
+
+    public void setRfbLocationDTO(RfbLocationDTO rfbLocationDTO) {
+        this.rfbLocationDTO = rfbLocationDTO;
+    }
+
     public Long getId() {
         return id;
     }
@@ -39,14 +47,6 @@ public class RfbEventDTO implements Serializable {
 
     public void setEventCode(String eventCode) {
         this.eventCode = eventCode;
-    }
-
-    public Long getRfbLocationId() {
-        return rfbLocationId;
-    }
-
-    public void setRfbLocationId(Long rfbLocationId) {
-        this.rfbLocationId = rfbLocationId;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class RfbEventDTO implements Serializable {
             "id=" + getId() +
             ", eventDate='" + getEventDate() + "'" +
             ", eventCode='" + getEventCode() + "'" +
-            ", rfbLocationId=" + getRfbLocationId() +
+            ", rfbLocationId=" + getRfbLocationDTO() +
             "}";
     }
 }

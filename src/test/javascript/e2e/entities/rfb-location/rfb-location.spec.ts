@@ -24,7 +24,7 @@ describe('RfbLocation e2e test', () => {
     await navBarPage.goToEntity('rfb-location');
     rfbLocationComponentsPage = new RfbLocationComponentsPage();
     await browser.wait(ec.visibilityOf(rfbLocationComponentsPage.title), 5000);
-    expect(await rfbLocationComponentsPage.getTitle()).to.eq('Rfb Locations');
+    expect(await rfbLocationComponentsPage.getTitle()).to.eq('Locations');
     await browser.wait(
       ec.or(ec.visibilityOf(rfbLocationComponentsPage.entities), ec.visibilityOf(rfbLocationComponentsPage.noResult)),
       1000
@@ -34,7 +34,7 @@ describe('RfbLocation e2e test', () => {
   it('should load create RfbLocation page', async () => {
     await rfbLocationComponentsPage.clickOnCreateButton();
     rfbLocationUpdatePage = new RfbLocationUpdatePage();
-    expect(await rfbLocationUpdatePage.getPageTitle()).to.eq('Create or edit a Rfb Location');
+    expect(await rfbLocationUpdatePage.getPageTitle()).to.eq('Create or edit a Location');
     await rfbLocationUpdatePage.cancel();
   });
 
@@ -62,7 +62,7 @@ describe('RfbLocation e2e test', () => {
     await rfbLocationComponentsPage.clickOnLastDeleteButton();
 
     rfbLocationDeleteDialog = new RfbLocationDeleteDialog();
-    expect(await rfbLocationDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Rfb Location?');
+    expect(await rfbLocationDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Location?');
     await rfbLocationDeleteDialog.clickOnConfirmButton();
 
     expect(await rfbLocationComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);

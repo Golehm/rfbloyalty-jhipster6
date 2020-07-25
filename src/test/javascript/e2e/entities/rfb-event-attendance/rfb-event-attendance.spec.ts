@@ -28,7 +28,7 @@ describe('RfbEventAttendance e2e test', () => {
     await navBarPage.goToEntity('rfb-event-attendance');
     rfbEventAttendanceComponentsPage = new RfbEventAttendanceComponentsPage();
     await browser.wait(ec.visibilityOf(rfbEventAttendanceComponentsPage.title), 5000);
-    expect(await rfbEventAttendanceComponentsPage.getTitle()).to.eq('Rfb Event Attendances');
+    expect(await rfbEventAttendanceComponentsPage.getTitle()).to.eq('Event Attendances');
     await browser.wait(
       ec.or(ec.visibilityOf(rfbEventAttendanceComponentsPage.entities), ec.visibilityOf(rfbEventAttendanceComponentsPage.noResult)),
       1000
@@ -38,7 +38,7 @@ describe('RfbEventAttendance e2e test', () => {
   it('should load create RfbEventAttendance page', async () => {
     await rfbEventAttendanceComponentsPage.clickOnCreateButton();
     rfbEventAttendanceUpdatePage = new RfbEventAttendanceUpdatePage();
-    expect(await rfbEventAttendanceUpdatePage.getPageTitle()).to.eq('Create or edit a Rfb Event Attendance');
+    expect(await rfbEventAttendanceUpdatePage.getPageTitle()).to.eq('Create or edit a Event Attendance');
     await rfbEventAttendanceUpdatePage.cancel();
   });
 
@@ -72,7 +72,7 @@ describe('RfbEventAttendance e2e test', () => {
     await rfbEventAttendanceComponentsPage.clickOnLastDeleteButton();
 
     rfbEventAttendanceDeleteDialog = new RfbEventAttendanceDeleteDialog();
-    expect(await rfbEventAttendanceDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Rfb Event Attendance?');
+    expect(await rfbEventAttendanceDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Event Attendance?');
     await rfbEventAttendanceDeleteDialog.clickOnConfirmButton();
 
     expect(await rfbEventAttendanceComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
