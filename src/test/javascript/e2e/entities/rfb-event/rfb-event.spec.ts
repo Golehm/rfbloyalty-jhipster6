@@ -60,7 +60,7 @@ describe('RfbEvent e2e test', () => {
     await rfbEventComponentsPage.clickOnLastDeleteButton();
 
     rfbEventDeleteDialog = new RfbEventDeleteDialog();
-    expect(await rfbEventDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Rfb Event?');
+    expect(await rfbEventDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Event?');
     await rfbEventDeleteDialog.clickOnConfirmButton();
 
     expect(await rfbEventComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);

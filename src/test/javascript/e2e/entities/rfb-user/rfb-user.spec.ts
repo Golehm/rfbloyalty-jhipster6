@@ -31,7 +31,7 @@ describe('RfbUser e2e test', () => {
   it('should load create RfbUser page', async () => {
     await rfbUserComponentsPage.clickOnCreateButton();
     rfbUserUpdatePage = new RfbUserUpdatePage();
-    expect(await rfbUserUpdatePage.getPageTitle()).to.eq('Create or edit a Rfb User');
+    expect(await rfbUserUpdatePage.getPageTitle()).to.eq('Create or edit a Runner');
     await rfbUserUpdatePage.cancel();
   });
 
@@ -55,7 +55,7 @@ describe('RfbUser e2e test', () => {
     await rfbUserComponentsPage.clickOnLastDeleteButton();
 
     rfbUserDeleteDialog = new RfbUserDeleteDialog();
-    expect(await rfbUserDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Rfb User?');
+    expect(await rfbUserDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Runner?');
     await rfbUserDeleteDialog.clickOnConfirmButton();
 
     expect(await rfbUserComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
