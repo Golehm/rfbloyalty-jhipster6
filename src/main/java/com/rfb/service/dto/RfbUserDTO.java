@@ -6,14 +6,14 @@ import java.io.Serializable;
  * A DTO for the {@link com.rfb.domain.RfbUser} entity.
  */
 public class RfbUserDTO implements Serializable {
-    
+
     private Long id;
 
     private String username;
 
 
-    private Long homeLocationId;
-    
+    private RfbLocationDTO rfbLocationDTO;
+
     public Long getId() {
         return id;
     }
@@ -30,12 +30,12 @@ public class RfbUserDTO implements Serializable {
         this.username = username;
     }
 
-    public Long getHomeLocationId() {
-        return homeLocationId;
+    public RfbLocationDTO getRfbLocationDTO() {
+        return rfbLocationDTO;
     }
 
-    public void setHomeLocationId(Long rfbLocationId) {
-        this.homeLocationId = rfbLocationId;
+    public void setRfbLocationDTO(RfbLocationDTO rfbLocationDTO) {
+        this.rfbLocationDTO = rfbLocationDTO;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class RfbUserDTO implements Serializable {
         return "RfbUserDTO{" +
             "id=" + getId() +
             ", username='" + getUsername() + "'" +
-            ", homeLocationId=" + getHomeLocationId() +
+            ", homeLocationId=" + getRfbLocationDTO() +
             "}";
     }
 }
