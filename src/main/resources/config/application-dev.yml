@@ -22,7 +22,7 @@ logging:
 spring:
   profiles:
     active: dev
-    include:
+    include: #swagger, no-liquibase
       - swagger
       # Uncomment to activate TLS for the dev profile
       #- tls
@@ -53,7 +53,7 @@ spring:
     contexts: dev
   mail:
     host: localhost
-    port: 25
+    port: 1025
     username:
     password:
   messages:
