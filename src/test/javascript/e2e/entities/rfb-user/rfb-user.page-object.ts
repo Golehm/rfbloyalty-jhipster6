@@ -32,6 +32,7 @@ export class RfbUserUpdatePage {
   usernameInput = element(by.id('field_username'));
 
   homeLocationSelect = element(by.id('field_homeLocation'));
+  userSelect = element(by.id('field_user'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getText();
@@ -59,6 +60,22 @@ export class RfbUserUpdatePage {
 
   async getHomeLocationSelectedOption(): Promise<string> {
     return await this.homeLocationSelect.element(by.css('option:checked')).getText();
+  }
+
+  async userSelectLastOption(): Promise<void> {
+    await this.userSelect.all(by.tagName('option')).last().click();
+  }
+
+  async userSelectOption(option: string): Promise<void> {
+    await this.userSelect.sendKeys(option);
+  }
+
+  getUserSelect(): ElementFinder {
+    return this.userSelect;
+  }
+
+  async getUserSelectedOption(): Promise<string> {
+    return await this.userSelect.element(by.css('option:checked')).getText();
   }
 
   async save(): Promise<void> {

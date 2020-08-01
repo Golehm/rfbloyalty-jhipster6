@@ -1,7 +1,11 @@
-import { browser, ExpectedConditions as ec, promise } from 'protractor';
+import { browser, ExpectedConditions as ec /* , promise */ } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
-import { RfbUserComponentsPage, RfbUserDeleteDialog, RfbUserUpdatePage } from './rfb-user.page-object';
+import {
+  RfbUserComponentsPage,
+  /* RfbUserDeleteDialog, */
+  RfbUserUpdatePage,
+} from './rfb-user.page-object';
 
 const expect = chai.expect;
 
@@ -10,7 +14,7 @@ describe('RfbUser e2e test', () => {
   let signInPage: SignInPage;
   let rfbUserComponentsPage: RfbUserComponentsPage;
   let rfbUserUpdatePage: RfbUserUpdatePage;
-  let rfbUserDeleteDialog: RfbUserDeleteDialog;
+  /* let rfbUserDeleteDialog: RfbUserDeleteDialog; */
 
   before(async () => {
     await browser.get('/');
@@ -31,35 +35,40 @@ describe('RfbUser e2e test', () => {
   it('should load create RfbUser page', async () => {
     await rfbUserComponentsPage.clickOnCreateButton();
     rfbUserUpdatePage = new RfbUserUpdatePage();
-    expect(await rfbUserUpdatePage.getPageTitle()).to.eq('Create or edit a Runner');
+    expect(await rfbUserUpdatePage.getPageTitle()).to.eq('Create or edit a Rfb User');
     await rfbUserUpdatePage.cancel();
   });
 
-  it('should create and save RfbUsers', async () => {
-    const nbButtonsBeforeCreate = await rfbUserComponentsPage.countDeleteButtons();
+  /* it('should create and save RfbUsers', async () => {
+        const nbButtonsBeforeCreate = await rfbUserComponentsPage.countDeleteButtons();
 
-    await rfbUserComponentsPage.clickOnCreateButton();
+        await rfbUserComponentsPage.clickOnCreateButton();
 
-    await promise.all([rfbUserUpdatePage.setUsernameInput('username'), rfbUserUpdatePage.homeLocationSelectLastOption()]);
+        await promise.all([
+            rfbUserUpdatePage.setUsernameInput('username'),
+            rfbUserUpdatePage.homeLocationSelectLastOption(),
+            rfbUserUpdatePage.userSelectLastOption(),
+        ]);
 
-    expect(await rfbUserUpdatePage.getUsernameInput()).to.eq('username', 'Expected Username value to be equals to username');
+        expect(await rfbUserUpdatePage.getUsernameInput()).to.eq('username', 'Expected Username value to be equals to username');
 
-    await rfbUserUpdatePage.save();
-    expect(await rfbUserUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+        await rfbUserUpdatePage.save();
+        expect(await rfbUserUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-    expect(await rfbUserComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-  });
+        expect(await rfbUserComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+    }); */
 
-  it('should delete last RfbUser', async () => {
-    const nbButtonsBeforeDelete = await rfbUserComponentsPage.countDeleteButtons();
-    await rfbUserComponentsPage.clickOnLastDeleteButton();
+  /* it('should delete last RfbUser', async () => {
+        const nbButtonsBeforeDelete = await rfbUserComponentsPage.countDeleteButtons();
+        await rfbUserComponentsPage.clickOnLastDeleteButton();
 
-    rfbUserDeleteDialog = new RfbUserDeleteDialog();
-    expect(await rfbUserDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Runner?');
-    await rfbUserDeleteDialog.clickOnConfirmButton();
+        rfbUserDeleteDialog = new RfbUserDeleteDialog();
+        expect(await rfbUserDeleteDialog.getDialogTitle())
+            .to.eq('Are you sure you want to delete this Rfb User?');
+        await rfbUserDeleteDialog.clickOnConfirmButton();
 
-    expect(await rfbUserComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-  });
+        expect(await rfbUserComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+    }); */
 
   after(async () => {
     await navBarPage.autoSignOut();

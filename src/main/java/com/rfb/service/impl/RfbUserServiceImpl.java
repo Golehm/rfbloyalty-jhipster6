@@ -3,6 +3,7 @@ package com.rfb.service.impl;
 import com.rfb.service.RfbUserService;
 import com.rfb.domain.RfbUser;
 import com.rfb.repository.RfbUserRepository;
+import com.rfb.repository.UserRepository;
 import com.rfb.service.dto.RfbUserDTO;
 import com.rfb.service.mapper.RfbUserMapper;
 import org.slf4j.Logger;
@@ -29,15 +30,20 @@ public class RfbUserServiceImpl implements RfbUserService {
 
     private final RfbUserMapper rfbUserMapper;
 
-    public RfbUserServiceImpl(RfbUserRepository rfbUserRepository, RfbUserMapper rfbUserMapper) {
+    private final UserRepository userRepository;
+
+    public RfbUserServiceImpl(RfbUserRepository rfbUserRepository, RfbUserMapper rfbUserMapper, UserRepository userRepository) {
         this.rfbUserRepository = rfbUserRepository;
         this.rfbUserMapper = rfbUserMapper;
+        this.userRepository = userRepository;
     }
 
     @Override
     public RfbUserDTO save(RfbUserDTO rfbUserDTO) {
         log.debug("Request to save RfbUser : {}", rfbUserDTO);
         RfbUser rfbUser = rfbUserMapper.toEntity(rfbUserDTO);
+        Long userId = rfbUserDTO.getUserId();
+        userRepository.findById(userId).ifPresent(rfbUser::user);
         rfbUser = rfbUserRepository.save(rfbUser);
         return rfbUserMapper.toDto(rfbUser);
     }

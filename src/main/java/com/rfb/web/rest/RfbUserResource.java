@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -49,6 +50,9 @@ public class RfbUserResource {
         log.debug("REST request to save RfbUser : {}", rfbUserDTO);
         if (rfbUserDTO.getId() != null) {
             throw new BadRequestAlertException("A new rfbUser cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        if (Objects.isNull(rfbUserDTO.getUserId())) {
+            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
         }
         RfbUserDTO result = rfbUserService.save(rfbUserDTO);
         return ResponseEntity.created(new URI("/api/rfb-users/" + result.getId()))

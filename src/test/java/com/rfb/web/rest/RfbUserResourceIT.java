@@ -2,6 +2,7 @@ package com.rfb.web.rest;
 
 import com.rfb.RfbloyaltyApp;
 import com.rfb.domain.RfbUser;
+import com.rfb.domain.User;
 import com.rfb.repository.RfbUserRepository;
 import com.rfb.service.RfbUserService;
 import com.rfb.service.dto.RfbUserDTO;
@@ -61,6 +62,11 @@ public class RfbUserResourceIT {
     public static RfbUser createEntity(EntityManager em) {
         RfbUser rfbUser = new RfbUser()
             .username(DEFAULT_USERNAME);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        rfbUser.setUser(user);
         return rfbUser;
     }
     /**
@@ -72,6 +78,11 @@ public class RfbUserResourceIT {
     public static RfbUser createUpdatedEntity(EntityManager em) {
         RfbUser rfbUser = new RfbUser()
             .username(UPDATED_USERNAME);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        rfbUser.setUser(user);
         return rfbUser;
     }
 
@@ -96,6 +107,9 @@ public class RfbUserResourceIT {
         assertThat(rfbUserList).hasSize(databaseSizeBeforeCreate + 1);
         RfbUser testRfbUser = rfbUserList.get(rfbUserList.size() - 1);
         assertThat(testRfbUser.getUsername()).isEqualTo(DEFAULT_USERNAME);
+
+        // Validate the id for MapsId, the ids must be same
+        assertThat(testRfbUser.getId()).isEqualTo(testRfbUser.getUser().getId());
     }
 
     @Test
@@ -118,6 +132,39 @@ public class RfbUserResourceIT {
         assertThat(rfbUserList).hasSize(databaseSizeBeforeCreate);
     }
 
+    @Test
+    @Transactional
+    public void updateRfbUserMapsIdAssociationWithNewId() throws Exception {
+        // Initialize the database
+        rfbUserRepository.saveAndFlush(rfbUser);
+        int databaseSizeBeforeCreate = rfbUserRepository.findAll().size();
+
+
+        // Load the rfbUser
+        RfbUser updatedRfbUser = rfbUserRepository.findById(rfbUser.getId()).get();
+        // Disconnect from session so that the updates on updatedRfbUser are not directly saved in db
+        em.detach(updatedRfbUser);
+
+        // Update the User with new association value
+        updatedRfbUser.setUser();
+        RfbUserDTO updatedRfbUserDTO = rfbUserMapper.toDto(updatedRfbUser);
+
+        // Update the entity
+        restRfbUserMockMvc.perform(put("/api/rfb-users")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(updatedRfbUserDTO)))
+            .andExpect(status().isOk());
+
+        // Validate the RfbUser in the database
+        List<RfbUser> rfbUserList = rfbUserRepository.findAll();
+        assertThat(rfbUserList).hasSize(databaseSizeBeforeCreate);
+        RfbUser testRfbUser = rfbUserList.get(rfbUserList.size() - 1);
+
+        // Validate the id for MapsId, the ids must be same
+        // Uncomment the following line for assertion. However, please note that there is a known issue and uncommenting will fail the test.
+        // Please look at https://github.com/jhipster/generator-jhipster/issues/9100. You can modify this test as necessary.
+        // assertThat(testRfbUser.getId()).isEqualTo(testRfbUser.getUser().getId());
+    }
 
     @Test
     @Transactional

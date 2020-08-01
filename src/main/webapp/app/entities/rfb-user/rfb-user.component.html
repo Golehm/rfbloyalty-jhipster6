@@ -5,7 +5,7 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-rfb-user" [routerLink]="['/rfb-user/new']">
             <fa-icon icon="plus"></fa-icon>
             <span>
-            Create a new Runner
+            Create a new Rfb User
             </span>
         </button>
     </h2>
@@ -15,7 +15,7 @@
     <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="rfbUsers?.length === 0">
-        <span>No Runners found</span>
+        <span>No rfbUsers found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="rfbUsers && rfbUsers.length > 0">
@@ -25,6 +25,7 @@
                     <th scope="col" ><span>ID</span></th>
                     <th scope="col" ><span>Username</span></th>
                     <th scope="col" ><span>Home Location</span></th>
+                    <th scope="col" ><span>User</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -36,6 +37,9 @@
                         <div *ngIf="rfbUser.homeLocationId">
                             <a [routerLink]="['/rfb-location', rfbUser.homeLocationId , 'view']" >{{ rfbUser.homeLocationId }}</a>
                         </div>
+                    </td>
+                    <td>
+                        {{ rfbUser.userLogin }}
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

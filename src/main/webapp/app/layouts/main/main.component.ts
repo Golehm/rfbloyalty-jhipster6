@@ -9,7 +9,7 @@ import { AccountService } from 'app/core/auth/account.service';
   templateUrl: './main.component.html',
 })
 export class MainComponent implements OnInit {
-  //public cardStyles: string;
+  // public cardStyles: string;
   public currentRoute: string;
   constructor(private accountService: AccountService, private titleService: Title, private router: Router) {
     this.currentRoute = router.url;

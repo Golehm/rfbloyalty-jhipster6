@@ -10,6 +10,10 @@ import { IRfbUser, RfbUser } from 'app/shared/model/rfb-user.model';
 import { RfbUserService } from './rfb-user.service';
 import { IRfbLocation } from 'app/shared/model/rfb-location.model';
 import { RfbLocationService } from 'app/entities/rfb-location/rfb-location.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
+
+type SelectableEntity = IRfbLocation | IUser;
 
 @Component({
   selector: 'jhi-rfb-user-update',
@@ -18,16 +22,19 @@ import { RfbLocationService } from 'app/entities/rfb-location/rfb-location.servi
 export class RfbUserUpdateComponent implements OnInit {
   isSaving = false;
   homelocations: IRfbLocation[] = [];
+  users: IUser[] = [];
 
   editForm = this.fb.group({
     id: [],
     username: [],
     homeLocationId: [],
+    userId: [],
   });
 
   constructor(
     protected rfbUserService: RfbUserService,
     protected rfbLocationService: RfbLocationService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -57,6 +64,8 @@ export class RfbUserUpdateComponent implements OnInit {
               .subscribe((concatRes: IRfbLocation[]) => (this.homelocations = concatRes));
           }
         });
+
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -65,6 +74,7 @@ export class RfbUserUpdateComponent implements OnInit {
       id: rfbUser.id,
       username: rfbUser.username,
       homeLocationId: rfbUser.homeLocationId,
+      userId: rfbUser.userId,
     });
   }
 
@@ -88,6 +98,7 @@ export class RfbUserUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       username: this.editForm.get(['username'])!.value,
       homeLocationId: this.editForm.get(['homeLocationId'])!.value,
+      userId: this.editForm.get(['userId'])!.value,
     };
   }
 
@@ -107,7 +118,7 @@ export class RfbUserUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IRfbLocation): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }
